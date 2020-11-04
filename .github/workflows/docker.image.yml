@@ -10,7 +10,7 @@ on:
   pull_request:
 
 env:
-  IMAGE_NAME: php74-fpm
+  IMAGE_NAME: php80-fpm
 
 jobs:
   lint-docker-file:
@@ -33,5 +33,5 @@ jobs:
     - name: Test the Docker image
       run: |
         CONTAINER_OUTPUT="$(docker run --rm -t ${IMAGE_NAME} -v)"
-        TEST_STRING="$(echo "${CONTAINER_OUTPUT}" | grep -E '^PHP\s7\.4' | cut -d'.' -f3 --complement)"
-        if ! [ "${TEST_STRING}" = "PHP 7.4" ]; then exit 1; fi
+        TEST_STRING="$(echo "${CONTAINER_OUTPUT}" | grep -E '^PHP\s8\.0' | cut -d'.' -f3 --complement)"
+        if ! [ "${TEST_STRING}" = "PHP 8.0" ]; then exit 1; fi
