@@ -26,6 +26,7 @@ ENV EXT_DEPS \
   libpng-dev \
   libjpeg-turbo-dev \
   libwebp-dev \
+  libzip-dev \
   imagemagick-dev \
   libtool
 
@@ -39,11 +40,16 @@ RUN set -xe; \
   && docker-php-ext-configure gd \
     --with-freetype \
     --with-jpeg \
-  && pecl install imagick \
   && NPROC="$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1)" \
   && docker-php-ext-install "-j${NPROC}" bcmath exif gd mysqli \
-  && docker-php-ext-enable bcmath exif gd imagick mysqli \
-  && apk add --no-cache --virtual .imagick-runtime-deps imagemagick \
+# not ready yet: https://github.com/Imagick/imagick/issues/271 / https://github.com/FriendsOfPHP/pickle/issues/193
+#  && docker-php-ext-install "-j${NPROC}" zip \
+#  && curl -L -o /usr/local/bin/pickle https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar \
+#  && chmod +x /usr/local/bin/pickle \
+#  && pickle install imagick \
+#  && docker-php-ext-enable imagick \
+#  && apk add --no-cache --virtual .imagick-runtime-deps imagemagick \
+  && docker-php-ext-enable bcmath exif gd mysqli \
   # Cleanup build deps
   && apk del .build-deps \
   && rm -rf /tmp/* /var/cache/apk/*
