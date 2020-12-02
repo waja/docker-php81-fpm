@@ -47,12 +47,12 @@ RUN set -xe; \
   && docker-php-ext-install "-j${NPROC}" bcmath exif gd mysqli \
 # not ready yet: https://github.com/Imagick/imagick/issues/271 / https://github.com/FriendsOfPHP/pickle/issues/193
   && docker-php-ext-install "-j${NPROC}" zip \
-  && curl -L -o /usr/local/bin/pickle https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar \
-  && chmod +x /usr/local/bin/pickle \
-#  && pickle install imagick \
-#  && git clone https://github.com/Imagick/imagick.git imagick && git checkout ${IMAGICK_SHA} && pickle install \
+#  && curl -L -o /usr/local/bin/pickle https://github.com/FriendsOfPHP/pickle/releases/latest/download/pickle.phar \
+#  && chmod +x /usr/local/bin/pickle \
+##  && pickle install imagick \
+##  && git clone https://github.com/Imagick/imagick.git imagick && git checkout ${IMAGICK_SHA} && pickle install \
   && curl -L -o /tmp/imagick.tar.gz https://github.com/Imagick/imagick/archive/${IMAGICK_SHA}.tar.gz && tar --strip-components=1 -xf /tmp/imagick.tar.gz && phpize && ./configure && make && make install \
-# pickle install --defaults --no-interaction --version-override=3.4.4 \
+## pickle install --defaults --no-interaction --version-override=3.4.4 \
   && docker-php-ext-enable imagick \
   && apk add --no-cache --virtual .imagick-runtime-deps imagemagick \
   && docker-php-ext-enable bcmath exif gd mysqli \
