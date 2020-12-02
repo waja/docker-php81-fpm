@@ -32,6 +32,7 @@ ENV EXT_DEPS \
 
 ENV IMAGICK_SHA 765649716faf3215b6ffca1b329e6a49aa42b24f
 
+WORKDIR /tmp/
 # hadolint ignore=SC2086,DL3017,DL3018
 RUN set -xe; \
   apk --no-cache update && apk --no-cache upgrade \
@@ -50,10 +51,12 @@ RUN set -xe; \
   && chmod +x /usr/local/bin/pickle \
 #  && pickle install imagick \
 #  && git clone https://github.com/Imagick/imagick.git imagick && git checkout ${IMAGICK_SHA} && pickle install \
-  && curl -L -o /tmp/imagick.tar.gz https://github.com/Imagick/imagick/archive/${IMAGICK_SHA}.tar.gz && tar --strip-components=1 -xf /tmp/imagick.tar.gz && pickle install --defaults --no-interaction --version-override=3.4.4 \
+  && curl -L -o /tmp/imagick.tar.gz https://github.com/Imagick/imagick/archive/${IMAGICK_SHA}.tar.gz && tar --strip-components=1 -xf /tmp/imagick.tar.gz && phpize && ./configure && make && make install \
+# pickle install --defaults --no-interaction --version-override=3.4.4 \
   && docker-php-ext-enable imagick \
   && apk add --no-cache --virtual .imagick-runtime-deps imagemagick \
   && docker-php-ext-enable bcmath exif gd mysqli \
   # Cleanup build deps
   && apk del .build-deps \
   && rm -rf /tmp/* /var/cache/apk/*
+WORKDIR /var/www/html/
