@@ -37,6 +37,8 @@ jobs:
         CONTAINER_OUTPUT="$(docker run --rm -t ${IMAGE_NAME} -v)"
         TEST_STRING="$(echo "${CONTAINER_OUTPUT}" | grep -E '^PHP\s8\.0' | cut -d'.' -f3 --complement)"
         if ! [ "${TEST_STRING}" = "PHP 8.0" ]; then exit 1; fi
+    - name: Testing characters
+      run: docker run -i ${IMAGE_NAME} php -r 'print (iconv("utf-8", "ASCII//TRANSLIT", "ströng contäning ümlaöits"));' || exit 1
     - name: Scan image
       uses: Azure/container-scan@v0
       env:
