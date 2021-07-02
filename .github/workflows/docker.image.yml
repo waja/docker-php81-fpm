@@ -14,7 +14,7 @@ on:
     - cron: '43 10 * * 4'
 
 env:
-  IMAGE_NAME: php80-fpm
+  IMAGE_NAME: php81-fpm
 
 jobs:
   codespell:

@@ -1,4 +1,4 @@
-FROM php:8.0.7-fpm-alpine
+FROM php:8.1.0alpha2-fpm-alpine
 
 ARG BUILD_DATE
 ARG BUILD_VERSION
@@ -17,7 +17,7 @@ LABEL maintainer="Jan Wagner <waja@cyconet.org>" \
     org.label-schema.vcs-url="${VCS_URL:-unknown}" \
     org.label-schema.vcs-ref="${VCS_REF:-unknown}" \
     org.label-schema.vcs-branch="${VCS_BRANCH:-unknown}" \
-    org.opencontainers.image.source="https://github.com/waja/docker-php80-fpm"
+    org.opencontainers.image.source="https://github.com/waja/docker-php81-fpm"
 
 ENV EXT_DEPS \
   freetype \
