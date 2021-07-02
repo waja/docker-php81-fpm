@@ -51,7 +51,7 @@ RUN set -xe; \
   && docker-php-ext-install "-j${NPROC}" zip \
   && docker-php-ext-enable bcmath exif gd imagick mysqli \
   && docker-php-ext-enable zip \
-  && apk add --no-cache --virtual .imagick-runtime-deps imagemagick \
+  && apk add --no-cache --virtual .imagick-runtime-deps imagemagick libgomp \
   # Cleanup build deps
   && apk del .build-deps \
   && rm -rf /tmp/* /var/cache/apk/*
