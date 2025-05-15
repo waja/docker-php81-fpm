@@ -5,6 +5,11 @@
     {
       "matchFileNames": [".github/workflows/**"],
       "pinDigests": false
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["php"],
+      "allowedVersions": "<8.2"
     }
   ]
 }
