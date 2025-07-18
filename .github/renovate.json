@@ -12,9 +12,10 @@
       "allowedVersions": "<8.2"
     },
     {
-      "description": "Automerge non-major updates",
+      "description": "Automerge patch level updates",
       "matchManagers": ["dockerfile"],
-      "matchUpdateTypes": ["patch", "digest"],
+      "matchUpdateTypes": ["patch"],
+      "matchCurrentVersion": "!/^0/",
       "automerge": true,
       "automergeType": "pr",
       "requiredStatusChecks": [
@@ -27,6 +28,13 @@
         "Run Trivy tests",
         "Run Anchore tests"
       ]
+    },
+    {
+      "description": "Automerge digest updates",
+      "matchManagers": ["dockerfile"],
+      "matchUpdateTypes": ["digest"],
+      "automerge": true,
+      "automergeType": "pr"
     }
   ]
 }
