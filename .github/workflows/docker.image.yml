@@ -132,7 +132,7 @@ jobs:
           - 5000:5000
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ${{ env.IMAGE_NAME }}-${{ github.run_number }}
           path: /tmp
@@ -167,7 +167,7 @@ jobs:
           - 5000:5000
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ${{ env.IMAGE_NAME }}-${{ github.run_number }}
           path: /tmp
@@ -204,7 +204,7 @@ jobs:
           - 5000:5000
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ${{ env.IMAGE_NAME }}-${{ github.run_number }}
           path: /tmp
@@ -239,7 +239,7 @@ jobs:
           - 5000:5000
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ${{ env.IMAGE_NAME }}-${{ github.run_number }}
           path: /tmp
@@ -336,7 +336,7 @@ jobs:
           echo "tags=${TAGS}" >> "$GITHUB_OUTPUT"
 
       - name: Download artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: ${{ env.IMAGE_NAME }}-${{ github.run_number }}
           path: /tmp
